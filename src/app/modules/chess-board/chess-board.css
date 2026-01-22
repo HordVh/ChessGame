@@ -1,0 +1,233 @@
+.chess-board {
+    display: flex;
+    float: none; 
+    justify-content: center;
+    flex-direction: column-reverse;
+    width: 480px;
+    height: 480px;
+    border: 2px solid black;
+    position: relative;
+}
+
+/* Create a composited layer for the board to avoid visual translation
+   when children toggle shadows/outlines. This prevents the board from
+   shifting inside its container. */
+.chess-board {
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+
+.rotated {
+    transform: rotate(180deg);
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.square {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    width: 60px;
+    cursor: pointer;
+    border: 1px solid white;
+    background-color: white;
+}
+
+/* Ensure overlays/box-shadows are visible */
+.square { position: relative; }
+
+/* Hint the browser the square's box-shadow/outline may change so it's
+   promoted to its own layer and won't cause layout jitter. */
+.square {
+    will-change: box-shadow, outline;
+    backface-visibility: hidden;
+}
+
+
+.admin-box {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background-color: rgb(38, 38, 133);
+}
+
+.admin-controls {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+}
+
+.admin-btn {
+    padding: 6px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+    border: 1px solid rgba(0,0,0,0.12);
+    background: white;
+}
+
+.admin-text {
+    color: white;
+    font-size: 16px;
+}
+
+
+.game-over-message {
+    color: white;
+    margin-top:50px;
+}
+
+.promotion-dialog {
+    float: none;
+    margin-left: 58px;
+    position: relative;
+    z-index: 300;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 100px;
+    background: rgba(33, 157, 211, 0.6);
+    border-radius: 6px;
+}
+
+.promotion-dialog img {
+    height: 70px;
+    cursor: pointer;
+}
+
+.close-promotion-dialog {
+    font-size: 45px;
+    cursor: pointer;
+    color: white;
+}
+
+.dark {
+    background-color: #779AAF
+}
+
+.light {
+    background-color: #D9E4E8;
+}
+
+.piece {
+    width: 50px;
+}
+
+.selected-square {
+    box-shadow: inset rgba(60, 70, 85, 0.5) 0px 0px 40px 0px, inset rgba(60, 70, 85, 0.5) 0px 0px 40px 0px, inset rgba(0, 0, 0, 1) 0px 0px 36px -24px;
+}
+
+.safe-square {
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    background-color: #bbb;
+    border-radius: 50%;
+    z-index: 100;
+}
+
+.king-in-check {
+    box-shadow: inset rgb(179, 21, 0) 0px 0px 40px 0px, inset rgb(163, 11, 0) 0px 0px 40px 0px, inset rgba(0, 0, 0, 1) 0px 0px 36px -24px;
+}
+
+.last-move {
+    box-shadow: inset rgb(6, 179, 0) 0px 0px 40px 0px, inset rgb(6, 179, 0)0px 0px 40px 0px, inset rgba(0, 0, 0, 1) 0px 0px 36px -24px;
+}
+
+
+
+.promotion-square {
+    box-shadow: inset rgb(0, 98, 150) 0px 0px 40px 0px, inset rgb(0, 98, 150) 0px 0px 40px 0px, inset rgba(0, 0, 0, 1) 0px 0px 36px -24px;
+}
+
+/* Add menu for picking a piece when 'Add' is clicked */
+.add-menu {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    background: white;
+    border: 1px solid rgba(0,0,0,0.12);
+    padding: 8px;
+    z-index: 500;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+    border-radius: 15px;
+}
+
+.add-menu-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    max-width: 450px;
+}
+
+.admin-piece {
+    width: 75px;
+    height: 75px;
+    cursor: pointer;
+}
+
+.close-add-menu {
+    display: block;
+    text-align: right;
+    cursor: pointer;
+    font-size: 36px;
+    color: rgba(0,0,0,0.6);
+    margin-top: 6px;
+}
+
+.remove-menu {
+    position: absolute;
+    right: 20px;
+    top: 250px; /* placed below add-menu */
+    background: #fff5f5;
+    border: 1px solid rgba(0,0,0,0.12);
+    padding: 8px;
+    z-index: 500;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+    border-radius: 6px;
+}
+
+.move-menu {
+    position: absolute;
+    right: 20px;
+    top: 120px; /* placed below add-menu */
+    background: #ffffff;
+    border: 1px solid rgba(0,0,0,0.12);
+    padding: 8px;
+    z-index: 500;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+    border-radius: 6px;
+}
+.moving-menu {
+    position: absolute;
+    right: 20px;
+    top: 120px; /* placed below add-menu */
+    background: #fffbe6;
+    border: 1px solid rgba(0,0,0,0.12);
+    padding: 10px;
+    z-index: 500;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+    border-radius: 6px;
+}
+
+.move-instructions p { font-weight: bold; margin: 0 0 6px 0; }
+.move-instructions ol { margin: 0 0 6px 14px; padding: 0; }
+.moving-menu .admin-btn { margin-top: 6px; }
+.admin-error {
+    color: white;
+    margin-left: 12px;
+}
+
+
