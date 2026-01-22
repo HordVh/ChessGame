@@ -1,0 +1,73 @@
+<div class="chess-board">
+    <div *ngFor="let row of chessboardView; let x = index" class="row">
+        <div *ngFor="let piece of row; let y = index" class="square" 
+        [ngClass]="{'dark': !isSquareLight(x, y), 
+        'light': isSquareLight(x, y),
+        'selected-square': isSquareSelected(x, y),
+        'last-move': isSquareLastMoved(x, y),
+        'king-in-check': isSqaureChecked(x, y),
+        'promotion-square': isSquarePromSafe(x, y)
+    }
+       " (click) = "move(x, y)">
+
+        <div [ngClass] = "{'safe-square': isSquareSafeforSelectedPiece(x, y)}">
+            <ng-container *ngIf="piece">
+                
+                <img [src]="pieceImagePaths[piece]" [alt]="piece" class="piece" />
+            </ng-container>
+        </div>
+        
+    </div>
+  </div>
+
+  <div>
+    <h1 *ngIf="gameOverMsg" class="game-over-message">
+        {{ gameOverMsg }} 
+    </h1>
+  </div>
+
+
+</div>
+<div *ngIf = "isPromotionVisible" class = "promotion-dialog" [ngStyle]="promotionDialogStyle()">
+      <img *ngFor="let piece of promotionPiece()" [src]="pieceImagePaths[piece]" (click)="promotePiece(piece)">
+
+      <span class = "close-promotion-dialog" (click) = "closePawnPromotion()">
+          &times;
+      </span>
+  </div>
+
+<div class = "admin-box">
+    <h3 class="admin-text">Admin Controls</h3>
+    <ul class="admin-controls">
+        <li><button class="admin-btn" (click)="toggleAddMenu()">Add</button></li>
+        <li><button class="admin-btn" (click)="toggleRemoveMenu()">Remove</button></li>
+        <li><button class="admin-btn" (click)="toggleMoveMenu()">Move</button></li>
+    </ul>
+
+    <div *ngIf="isAddMenuVisible" class="add-menu">
+        <div class="add-menu-grid">
+            <img *ngFor="let piece of addPieces" [src]="pieceImagePaths[piece]" [alt]="piece" (click)="selectAddPiece(piece)" class="admin-piece" />
+        </div>
+        <span class="close-add-menu" (click)="toggleAddMenu()">&times;</span>
+    </div>
+
+    <div *ngIf="isRemoveMenuVisible" class="remove-menu">
+        <div class="add-menu-grid">
+            <img *ngFor="let piece of addPieces" [src]="pieceImagePaths[piece]" [alt]="piece" (click)="selectRemovePiece(piece)" class="admin-piece" />
+        </div>
+        <span class="close-add-menu" (click)="toggleRemoveMenu()">&times;</span>
+    </div>
+
+    <div *ngIf="isMovingMenuVisible" class="moving-menu">
+        <div class="move-instructions">
+            <p>Move mode (bypass rules):</p>
+            <ol>
+                <li>Click the piece you want to move (source).</li>
+                <li>Click the destination square to place it.</li>
+            </ol>
+            <button class="admin-btn" (click)="toggleMoveMenu()">Cancel</button>
+        </div>
+    </div>
+
+    <div *ngIf="errorMsg" class="admin-error">{{ errorMsg }}</div>
+</div>
