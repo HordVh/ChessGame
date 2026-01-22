@@ -1,59 +1,47 @@
-# ChessApp
+# ♟️ Custom Chess Game
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.8.
+A custom-built chess game that goes beyond traditional chess rules. This project features **original piece designs** and an **Admin Menu** that gives full control over the board, allowing rule-bypassing moves and experimental gameplay. It is designed as both a playable chess game and a sandbox for testing unconventional mechanics and AI behavior.
 
-## Development server
+## ✨ Features
 
-To start a local development server, run:
+- ♞ Standard chess gameplay  
+- 🎨 Custom-designed chess pieces  
+- 🛠️ **Admin Menu** (rule bypass enabled):
+  - ➕ Add pieces to the board  
+  - ➖ Remove pieces from the board  
+  - 🔀 Move pieces freely, ignoring standard chess rules  
+- 🧪 Ideal for testing custom positions and scenarios  
 
-```bash
-ng serve
-```
+## 🤖 Planned AI Features
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- 🧠 **Stockfish AI**
+  - Rule-accurate gameplay  
+  - Competitive and traditional chess experience  
 
-## Code scaffolding
+- 🌀 **Gemini AI (Experimental Mode)**
+  - Known for making illegal or nonsensical chess moves  
+  - Can:
+    - Add pieces  
+    - Remove pieces  
+    - Move pieces in any way it wants  
+  - 🚫 **Restriction**:
+    - No adding or removing kings  
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## 💾 Planned Enhancements
 
-```bash
-ng generate component component-name
-```
+- ♜ FEN conversion for saving and loading board states  
+- 🔄 Board state manipulation tools for advanced testing
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## 🚀 Installation / Run Instructions
 
-```bash
-ng generate --help
-```
+> This project is deployed and does **not** require local installation.
 
-## Building
+### ▶️ Run the App
+- 📂 Open the repository  
+- 📄 Locate the **`chessgameapp`** file  
+- 🔗 Open the file and click the deployed app link  
+- 🌐 The chess game will launch in your browser  
 
-To build the project run:
+## 🎯 Purpose
 
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+This project is built to explore the intersection of classic chess, creative rule-breaking, and AI experimentation, offering both structured gameplay and controlled chaos.
