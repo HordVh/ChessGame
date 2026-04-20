@@ -382,6 +382,9 @@ export class ChessBoard {
         {
             this.fullNumberOfMoves++;
         }
+
+        this._boardAsFEN = this.FENConverter.convertToFEN(this.chessBoard, this._playerColor, this._lastMove, this.fiftyMoveRuleCounter, this.fullNumberOfMoves);
+        this.updateThreeFoldRepetition(this._boardAsFEN)
         this._isGameOver = this.isGameFinished();
 
         

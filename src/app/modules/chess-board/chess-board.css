@@ -17,6 +17,14 @@
     will-change: transform;
 }
 
+.centerDiv
+{
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    height: 100%;
+}
+
 
 .rotated {
     transform: rotate(180deg);
